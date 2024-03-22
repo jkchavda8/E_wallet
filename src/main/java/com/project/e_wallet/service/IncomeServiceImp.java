@@ -30,8 +30,9 @@ public class IncomeServiceImp implements IncomeService{
 
     @Override
     @Transactional
-    public void saveOrUpdateIncome(Income income) {
-        incomeRepository.saveOrUpdateIncome(income);
+    public Income saveOrUpdateIncome(Income income) {
+        return incomeRepository.saveOrUpdateIncome(income);
+        
     }
 
     @Override

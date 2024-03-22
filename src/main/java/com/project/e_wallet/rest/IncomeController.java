@@ -38,20 +38,23 @@ public class IncomeController {
 
     @PostMapping("/save")
     @Transactional
-    public Income saveIncome(@RequestBody Income income) {
+    public String saveIncome(@RequestBody Income income) {
         incomeService.saveOrUpdateIncome(income);
-        return income;
+        return "successfully save";
     }
 
     @PutMapping("/update")
     @Transactional
-    public void updateIncome(@RequestBody Income income) {
+    public Income updateIncome(@RequestBody Income income) {
         incomeService.saveOrUpdateIncome(income);
+        return incomeService.getIncomeById(income.getId());
+        
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void deleteIncome(@PathVariable Long id) {
+    public String deleteIncome(@PathVariable Long id) {
         incomeService.deleteIncome(id);
+        return "delete id:"+id;
     }
 }

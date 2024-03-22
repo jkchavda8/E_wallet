@@ -25,17 +25,18 @@ public class ImcomeRepositoryImp implements IncomeRepository{
     @Override
     @Transactional
     public List<Income> getAllIncomes() {
-        return entityManager.createQuery("SELECT i FROM Income i", Income.class).getResultList();
+        return entityManager.createQuery("FROM Income", Income.class).getResultList();
     }
 
     @Override
     @Transactional
-    public void saveOrUpdateIncome(Income income) {
+    public Income saveOrUpdateIncome(Income income) {
         if (income.getId() == null) {
             entityManager.persist(income);
         } else {
             entityManager.merge(income);
         }
+        return income;
     }
 
     @Override

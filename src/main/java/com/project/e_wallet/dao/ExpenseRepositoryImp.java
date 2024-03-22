@@ -18,13 +18,13 @@ public class ExpenseRepositoryImp implements ExpenseRepository{
 	
 	@Override
     public Expense getExpenseById(int id) {
-        return entityManager.find(Expense.class, 1);
+        return entityManager.find(Expense.class, id);
     }
 
     @Override
     @Transactional
     public List<Expense> getAllExpenses() {
-        return entityManager.createQuery("SELECT e FROM Expense e", Expense.class).getResultList();
+        return entityManager.createQuery("FROM Expense ", Expense.class).getResultList();
     }
 
     @Override

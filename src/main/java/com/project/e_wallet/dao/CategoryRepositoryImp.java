@@ -25,7 +25,7 @@ public class CategoryRepositoryImp implements CategoryRepository{
 	    @Override
 	    @Transactional
 	    public List<Category> getAllCategories() {
-	        return entityManager.createQuery("SELECT c FROM Category c", Category.class).getResultList();
+	        return entityManager.createQuery("FROM Category ", Category.class).getResultList();
 	    }
 
 	    @Override

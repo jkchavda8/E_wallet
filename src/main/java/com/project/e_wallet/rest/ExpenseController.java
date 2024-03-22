@@ -37,19 +37,22 @@ public class ExpenseController {
 
     @PostMapping("/save")
     @Transactional
-    public void saveExpense(@RequestBody Expense expense) {
+    public String saveExpense(@RequestBody Expense expense) {
         expenseService.saveOrUpdateExpense(expense);
+        return "successfully save";
     }
 
     @PutMapping("/update")
     @Transactional
-    public void updateExpense(@RequestBody Expense expense) {
+    public Expense updateExpense(@RequestBody Expense expense) {
         expenseService.saveOrUpdateExpense(expense);
+        return expenseService.getExpenseById(expense.getId());
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void deleteExpense(@PathVariable int id) {
+    public String deleteExpense(@PathVariable int id) {
         expenseService.deleteExpense(id);
+        return "delete id: "+id;
     }
 }

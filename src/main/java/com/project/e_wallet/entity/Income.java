@@ -1,6 +1,8 @@
 package com.project.e_wallet.entity;
 
-import jakarta.persistence.CascadeType;
+import java.sql.Date;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,17 +19,20 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false)
+    private Date date;
+
+	@Column(nullable = false)
     private String description;
     
     @Column(nullable = false)
     private double amount;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -86,6 +91,14 @@ public class Income {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

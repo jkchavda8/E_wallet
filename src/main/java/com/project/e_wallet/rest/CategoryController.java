@@ -38,19 +38,22 @@ public class CategoryController {
 
     @PostMapping("/save")
     @Transactional
-    public void saveCategory(@RequestBody Category category) {
+    public Category saveCategory(@RequestBody Category category) {
         categoryService.saveOrUpdateCategory(category);
+        return category;
     }
 
     @PutMapping("/update")
     @Transactional
-    public void updateCategory(@RequestBody Category category) {
+    public Category updateCategory(@RequestBody Category category) {
         categoryService.saveOrUpdateCategory(category);
+        return category;
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void deleteCategory(@PathVariable Long id) {
+    public String deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
+        return "delete id: "+id;
     }
 }

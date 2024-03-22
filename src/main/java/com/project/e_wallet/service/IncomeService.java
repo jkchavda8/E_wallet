@@ -7,6 +7,6 @@ import com.project.e_wallet.entity.Income;
 public interface IncomeService {
 	Income getIncomeById(Long id);
     List<Income> getAllIncomes();
-    void saveOrUpdateIncome(Income income);
+    Income saveOrUpdateIncome(Income income);
     void deleteIncome(Long id);
 }

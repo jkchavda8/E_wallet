@@ -1,10 +1,16 @@
 package com.project.e_wallet.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +27,22 @@ public class User {
 	
 	@Column(name="email")
 	private String email;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
+    private List<Income> incomes;
+	
+	@OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Expense> expense;
+
+	public List<Income> getIncomes() {
+		return incomes;
+	}
+
+	public void setIncomes(List<Income> incomes) {
+		this.incomes = incomes;
+	}
 
 	public User() {}
 	
@@ -58,6 +80,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Expense> getExpense() {
+		return expense;
+	}
+
+	public void setExpense(List<Expense> expense) {
+		this.expense = expense;
 	}
 	
 	
